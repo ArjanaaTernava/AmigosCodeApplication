@@ -1,5 +1,6 @@
 package com.evonem.customer;
 
+import com.evonem.exception.ResourceNotFound;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class CustomerService {
     }
 
     public Customer getCustomerById(Integer id){
-        return customerDao.selectCustomerById(id).orElseThrow(() -> new IllegalArgumentException("Customer with id [%s] does not exist".formatted(id)));
+        return customerDao.selectCustomerById(id)
+                .orElseThrow(() ->
+                new ResourceNotFound("Customer with id [%s] does not exist".formatted(id)));
     }
 }
