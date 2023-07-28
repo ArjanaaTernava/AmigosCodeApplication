@@ -8,8 +8,8 @@ spring:
       web-application-type: servlet
   datasource:
     url: jdbc:postgresql://localhost:5432/customer
-    username: postgres
-    password: root
+    username: ${USERNAME}
+    password: ${PASSWORD}
   jpa:
     hibernate:
       ddl-auto: create-drop
