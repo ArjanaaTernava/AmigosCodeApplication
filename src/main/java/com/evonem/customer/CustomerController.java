@@ -1,5 +1,6 @@
 package com.evonem.customer;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +29,11 @@ public class CustomerController {
     @PostMapping
     public void registerCustomer(@RequestBody CustomerRegistrationRequest customerRegistrationRequest){
         customerService.addCustomer(customerRegistrationRequest);
+    }
+
+    @DeleteMapping("{customerId}")
+    public void deleteCustomer(
+            @PathVariable("customerId")Integer id) {
+        customerService.deleteCustomerById(id);
     }
 }
