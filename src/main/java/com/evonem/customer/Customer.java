@@ -1,10 +1,14 @@
 package com.evonem.customer;
 
 import com.evonem.Main;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.Objects;
 
+@Entity
 public class Customer {
+    @Id
     private Integer id;
     private String name;
     private String email;
