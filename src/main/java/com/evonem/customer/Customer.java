@@ -1,17 +1,34 @@
 package com.evonem.customer;
 
 import com.evonem.Main;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
 public class Customer {
     @Id
+    @SequenceGenerator(
+            name = "customer_sequence",
+            sequenceName = "customer_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_sequence"
+
+    )
     private Integer id;
+    @Column(
+            updatable = false
+    )
     private String name;
+    @Column(
+            updatable = false
+    )
     private String email;
+    @Column(
+            updatable = false
+    )
     private Integer age;
 
     public Customer(Integer id, String name, String email, Integer age) {
@@ -21,6 +38,11 @@ public class Customer {
         this.age = age;
     }
 
+    public Customer( String name, String email, Integer age) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+    }
     public Customer(){
 
     }
