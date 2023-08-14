@@ -17,5 +17,4 @@ public interface CustomerDao {
 
     void deleteCustomerById(Integer id);
     void updateCustomer(Customer update);
-
 }
