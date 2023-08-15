@@ -1,20 +1,24 @@
 package com.evonem.customer;
 
-import com.evonem.Main;
+
 import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "customer", uniqueConstraints = {
+        @UniqueConstraint(name = "customer_email_unique", columnNames = "email")
+})
 public class Customer {
     @Id
     @SequenceGenerator(
-            name = "customer_sequence",
-            sequenceName = "customer_sequence"
+            name = "customer_id_seq",
+            sequenceName = "customer_id_seq",
+            allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "customer_sequence"
+            generator = "customer_id_seq"
 
     )
     private Integer id;

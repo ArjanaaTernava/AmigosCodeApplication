@@ -1,6 +1,7 @@
 package com.evonem.customer;
 
 import com.evonem.exception.DuplicateResourceException;
+import com.evonem.exception.RequestValidationException;
 import com.evonem.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 public class CustomerService {
     private final CustomerDao customerDao;
 
-    public CustomerService(@Qualifier("jpa") CustomerDao customerDao) {
+    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao) {
         this.customerDao = customerDao;
     }
 
@@ -45,5 +46,31 @@ public class CustomerService {
             throw new ResourceNotFoundException("Customer with id [%s] does not exist".formatted(id));
         }
         customerDao.deleteCustomerById(id);
+    }
+
+    public void updateCustomer(Integer customerId,CustomerUpdateRequest updateRequest){
+        Customer customer = getCustomerById(customerId);
+        boolean changes =false;
+        if(updateRequest.name()!=null && !updateRequest.name().equals(customer.getName())){
+            customer.setName(updateRequest.name());
+            changes=true;
+        }
+
+        if(updateRequest.age()!=null && !updateRequest.age().equals(customer.getAge())){
+            customer.setAge(updateRequest.age());
+            changes=true;
+        }
+
+        if(updateRequest.email() != null && !updateRequest.email().equals(customer.getEmail())){
+            if(customerDao.existsPersonWithEmail(updateRequest.email())){
+                throw new DuplicateResourceException("email already taken");
+            }
+            customer.setEmail(updateRequest.email());
+            changes=true;
+        }
+        if (!changes){
+            throw new RequestValidationException("no data changes found");
+        }
+        customerDao.updateCustomer(customer);
     }
 }

@@ -54,4 +54,9 @@ public class CustomerListDataAccessService implements CustomerDao{
     public void deleteCustomerById(Integer id) {
         customers.stream().filter(c-> c.getId().equals(id)).findFirst().ifPresent(customers::remove);
     }
+
+    @Override
+    public void updateCustomer(Customer update) {
+        customers.add(update);
+    }
 }
