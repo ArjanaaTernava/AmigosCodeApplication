@@ -3,15 +3,13 @@ package com.evonem.customer;
 import com.evonem.AbstractTestcontainers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
 
 
 class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
@@ -97,7 +95,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
 
 
         //When
-        boolean actual = underTest.existsPersonWithEmail(email);
+        boolean actual = underTest.existsCustomerWithEmail(email);
         //Then
         assertThat(actual).isTrue();
     }
@@ -107,7 +105,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         //Given
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
         //When
-        boolean actual = underTest.existsPersonWithEmail(email);
+        boolean actual = underTest.existsCustomerWithEmail(email);
         //Then
         assertThat(actual).isFalse();
     }
@@ -132,7 +130,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 .findFirst()
                 .orElseThrow();
         //When
-        boolean actual = underTest.existsPersonWithId(id);
+        boolean actual = underTest.existsCustomerWithId(id);
         //Then
         assertThat(actual).isTrue();
 
@@ -171,7 +169,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         String email = FAKER.internet().safeEmailAddress() + "-" + UUID.randomUUID();
         String name = FAKER.name().fullName();
         Customer customer = new Customer(
-                name,
+                FAKER.name().fullName(),
                 email,
                 20
         );
