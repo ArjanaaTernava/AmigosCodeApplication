@@ -1,6 +1,7 @@
 package com.evonem.customer;
 
 import com.evonem.AbstractTestcontainers;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
                 getJdbcTemplate(),customerRowMapper
         );
     }
+
 
     @Test
     void itShouldSelectAllCustomers() {
@@ -51,7 +53,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         underTest.insertCustomer(customer);
 
         int id = underTest.selectAllCustomers()
-                .stream().filter(c -> customer
+                .stream().filter(c -> c
                         .getEmail()
                         .equals(email))
                 .map(Customer::getId)
@@ -60,7 +62,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         //When
         Optional<Customer> actual = underTest.selectCustomerById(id);
         //Then
-        assertThat(actual).isPresent().hasValueSatisfying(c->
+            assertThat(actual).isPresent().hasValueSatisfying(c->
         {
             assertThat(c.getId()).isEqualTo(id);
             assertThat(c.getName()).isEqualTo(customer.getName());
@@ -123,7 +125,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
 
         underTest.insertCustomer(customer);
         int id = underTest.selectAllCustomers()
-                .stream().filter(c -> customer
+                .stream().filter(c -> c
                         .getEmail()
                         .equals(email))
                 .map(Customer::getId)
@@ -149,7 +151,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         underTest.insertCustomer(customer);
 
         int id = underTest.selectAllCustomers()
-                .stream().filter(c -> customer
+                .stream().filter(c -> c
                         .getEmail()
                         .equals(email))
                 .map(Customer::getId)
@@ -176,7 +178,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         underTest.insertCustomer(customer);
 
         int id = underTest.selectAllCustomers()
-                .stream().filter(c -> customer
+                .stream().filter(c -> c
                         .getEmail()
                         .equals(email))
                 .map(Customer::getId)
@@ -215,7 +217,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         underTest.insertCustomer(customer);
 
         int id = underTest.selectAllCustomers()
-                .stream().filter(c -> customer
+                .stream().filter(c -> c
                         .getEmail()
                         .equals(email))
                 .map(Customer::getId)
@@ -233,7 +235,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         //Then
         Optional<Customer> actual = underTest.selectCustomerById(id);
 
-        assertThat(actual).isPresent().hasValueSatisfying(c->{
+            assertThat(actual).isPresent().hasValueSatisfying(c->{
             assertThat(c.getId()).isEqualTo(id);
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(newEmail);
@@ -254,7 +256,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         underTest.insertCustomer(customer);
 
         int id = underTest.selectAllCustomers()
-                .stream().filter(c -> customer
+                .stream().filter(c -> c
                         .getEmail()
                         .equals(email))
                 .map(Customer::getId)
@@ -272,7 +274,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         //Then
         Optional<Customer> actual = underTest.selectCustomerById(id);
 
-        assertThat(actual).isPresent().hasValueSatisfying(c->{
+            assertThat(actual).isPresent().hasValueSatisfying(c->{
             assertThat(c.getId()).isEqualTo(id);
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());
@@ -293,12 +295,12 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         underTest.insertCustomer(customer);
 
         int id = underTest.selectAllCustomers()
-                .stream().filter(c -> customer
+                .stream().filter(c -> c
                         .getEmail()
                         .equals(email))
-                .map(Customer::getId)
-                .findFirst()
-                .orElseThrow();
+                        .map(Customer::getId)
+                        .findFirst()
+                        .orElseThrow();
         //When update with new name, age and email
         Customer update = new Customer();
         update.setId(id);
@@ -324,7 +326,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         underTest.insertCustomer(customer);
 
         int id = underTest.selectAllCustomers()
-                .stream().filter(c -> customer
+                .stream().filter(c -> c
                         .getEmail()
                         .equals(email))
                 .map(Customer::getId)
@@ -340,7 +342,7 @@ class CustomerJDBCDataAccessServiceTest extends AbstractTestcontainers {
         //Then
         Optional<Customer> actual = underTest.selectCustomerById(id);
 
-        assertThat(actual).isPresent().hasValueSatisfying(c->{
+            assertThat(actual).isPresent().hasValueSatisfying(c->{
             assertThat(c.getId()).isEqualTo(id);
             assertThat(c.getName()).isEqualTo(customer.getName());
             assertThat(c.getEmail()).isEqualTo(customer.getEmail());

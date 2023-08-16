@@ -16,6 +16,9 @@ import javax.sql.DataSource;
 @Testcontainers
 public abstract class AbstractTestcontainers {
 
+    private static final String USERNAME_DB = "spring.datasource.username";
+    private static final String PASSWORD_DB= "spring.datasource.password";
+
     @BeforeAll
     static void beforeAll() {
         Flyway flyway = Flyway.configure().dataSource(
@@ -30,9 +33,8 @@ public abstract class AbstractTestcontainers {
     @Container
     protected static final PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:latest")
             .withDatabaseName("amigoscode-dao-unit-test")
-            .withUsername("postgres")
-            .withPassword("password");
-
+            .withUsername(USERNAME_DB)
+            .withPassword(PASSWORD_DB);
 
     @DynamicPropertySource
     private static void registerDataSourceProperties(DynamicPropertyRegistry registry){
