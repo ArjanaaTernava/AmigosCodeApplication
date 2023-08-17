@@ -7,9 +7,9 @@ spring:
   main:
       web-application-type: servlet
   datasource:
-    url: jdbc:postgresql://localhost:5432/customer
-    username: ${USERNAME}
-    password: ${PASSWORD}
+    url: ${DATABASE_URL}
+    username: ${USERNAME_DB}
+    password: ${PASSWORD_DB}
   jpa:
     hibernate:
       ddl-auto: validate
