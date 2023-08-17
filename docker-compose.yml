@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     container_name: postgres1
@@ -14,6 +16,17 @@ services:
       - db
     restart: unless-stopped
 
+  app:
+    image: arjanaternava/amigoscodecourse-fullstack
+    container_name: amigoscodecourse-fullstack
+    environment:
+      SPRING_DATASOURCE_URL: "${DATABASE_CONTAINER_URL}"
+      SPRING_DATASOURCE_USERNAME: "${USERNAME_DB}"
+      SPRING_DATASOURCE_PASSWORD: "${PASSWORD_DB}"
+    ports:
+      - "8080:3000"
+    networks:
+      - db
 
 networks:
   db:
