@@ -1,14 +1,23 @@
 # AmigosCode Course Backend Application
 
-This repository contains a Java-based application developed following a course or tutorial by AmigosCode. It serves as a learning project, demonstrating various concepts in Java, Spring Boot, and potentially Docker.
+This repository contains a Java-based application developed as part of the [Full-Stack Professional course](https://www.amigoscode.com/courses/full-stack-professional) by AmigosCode. It serves as a learning project, demonstrating various backend concepts in Java, Spring Boot, AWS and Docker.
 
-## Features
 
-- **Spring Boot**: Core framework for application development.
-- **Data Access**: Supports JDBC, JPA, and in-memory data management.
-- **Exception Handling**: Custom exceptions for better error management.
-- **Testing**: Unit and integration tests with Testcontainers.
-- **Docker**: Containerization support with Docker Compose.
+## Main Backend Topics Learned
+
+Here are the key backend concepts I learned and applied in this project:
+
+- **Spring Boot 3**
+- **HTTP & API Development**
+- **Robust Error Handling Techniques**
+- **Databases & PostgreSQL**
+- **Spring Data JPA**
+- **Flyway for Seamless Database Migrations**
+- **JDBC for Efficient Database Communication**
+- **Testing Strategies for Robust, Reliable Code**
+- **Docker for Containerization and Deployment**
+- **AWS for Cloud-Based Hosting and Scaling**
+- **DevOps Best Practices**
 
 ## Project Structure
 
@@ -16,6 +25,7 @@ This repository contains a Java-based application developed following a course o
 - **Resources**: Database migration scripts and configuration files.
 - **Testing**: Unit and integration tests, including Testcontainers support.
 - **Docker**: Docker and AWS Elastic Beanstalk configurations.
+
 
 ## Prerequisites
 
@@ -27,11 +37,11 @@ This repository contains a Java-based application developed following a course o
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/ArjanaaTernava/amigoscodecourse-backend.git
+    git clone https://github.com/ArjanaaTernava/FullStackProfessional-Backend.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd amigoscodecourse-backend
+    cd FullStackProfessional-Backend
     ```
 3. Build the project with Maven:
     ```bash
@@ -59,4 +69,4 @@ This repository contains a Java-based application developed following a course o
 
 ## Frontend Repository
 
-The application UI is built with React. You can find the repository [here](https://github.com/ArjanaaTernava/amigoscodecourse-frontend).
+The application UI is built with React. You can find the repository [here](https://github.com/ArjanaaTernava/FullStackProfessional-Frontend).
